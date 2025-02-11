@@ -12,7 +12,7 @@
     </head>
 
     <body class="container">
-        <h1 class="text-primary">Admin dashboard page</h1>
+        <h1 class="text-primary mb-5">Admin Forget Password Page</h1>
         @if ($errors->any())
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -25,21 +25,16 @@
             <li>{{ Session::get('success') }}</li>
         @endif
 
-        <form action="{{route('admin.loginSubmit')}}" method="post">
+        <form action="{{ route('admin.forgetpwdsubmit') }}" method="post">
             @csrf
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                    aria-describedby="emailHelp">
+            <div class="mb-5">
+                <label for="exampleInputEmail1" class="form-label">Adresse Email</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-            </div>
+            <!-- Bouton de soumission -->
             <div class="mb-3 form-check">
-                <a href="{{route('admin.forgetpassword')}}" class="btn btn-secondary">Mot de passe oublié</a>
+                <button type="submit" class="btn btn-primary">Réinitialiser le mot de passe</button>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </body>
 

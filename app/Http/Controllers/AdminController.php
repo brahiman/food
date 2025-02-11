@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Websitemail;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function adminLogin(){
+    public function showAdminLoginForm(){
         return view('admin.login');
     }
     //end Method
@@ -41,4 +43,42 @@ class AdminController extends Controller
         return redirect()->route('admin.login')->with('success','Deconnexion réussie');
     }
     //end Method
+    public function showAdminForgetPasswordForm()
+    {
+        return view('admin.forgetpassword');
+    }
+    //end Method
+    public function adminForgetPasswordSubmit(Request $request){
+        $request->validate([
+            'email'=>'required|email'
+        ]);
+        $admin_data = Admin::where('email', $request->email)->first();
+        if(!$admin_data){
+            return redirect()->back()->with('error','Email incorrect');
+        }
+        $token = hash("sha256",time());
+        $admin_data->token = $token;
+        $admin_data->update();
+
+        $reset_link = url('admin/reset-password/'.$token.'/'.$admin_data->email);
+        $subject = "Reset password";
+        $message = "<p>Dear Admin, Pleace click on belon link to reset your password</p>";
+        $message .= "<p><a href='".$reset_link."'>".$reset_link."</a></p>";
+        $message .= "<p>Regards, Team Team</p>";
+
+        \Mail::to($request->email)->send(new Websitemail($subject, $message));
+        return redirect()->back()->with('success','Reset password link sent on your email');
+
+    }
+    //end Method
+    public function showAdminResetPasswordForm($token,$email){
+        $admin_data = Admin::where('token', $token)->where('email', $email)->first();
+        if(!$admin_data){
+            return redirect()->back()->with('error','Token or Email incorrect');
+        }
+        return view('admin.resetpassword', compact('token','email'));
+    }
+
+    //end Method
+
 }

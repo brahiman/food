@@ -25,6 +25,10 @@ Route::middleware(['admin'])->group(function () {
 });
 
 
-Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.login');
+Route::get('/admin/login', [AdminController::class, 'showAdminLoginForm'])->name('admin.login');
 Route::post('/admin/login/submit', [AdminController::class, 'adminLoginSubmit'])->name('admin.loginSubmit');
 Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
+
+Route::get('/admin/forget/password/', [AdminController::class, 'showAdminForgetPasswordForm'])->name('admin.forgetpassword');
+Route::post('/admin/forgetpwd/submit', [AdminController::class, 'adminForgetPasswordSubmit'])->name('admin.forgetpwdsubmit');
+Route::get('/admin/reset-password/{token}/{email}', [AdminController::class, 'showAdminResetPasswordForm']);
