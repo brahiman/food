@@ -25,7 +25,7 @@
     <li>{{ Session::get('success') }}</li>
 @endif
 
-<form action="{{ route('admin.forgetpwdsubmit') }}" method="post">
+<form action="{{ route('admin.resetpwdsubmit') }}" method="post">
     @csrf
     <input type="hidden" name="token" value="{{ $token }}">
     <input type="hidden" name="email" value="{{ $email }}">
