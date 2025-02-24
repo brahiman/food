@@ -3,23 +3,24 @@
 
 <head>
 
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Admin Forget Password Page </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
+    <meta content="Themesbrand" name="author"/>
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('backend/assets/images/favicon.ico')}}">
 
     <!-- preloader css -->
-    <link rel="stylesheet" href="{{asset('backend/assets/css/preloader.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('backend/assets/css/preloader.min.css')}}" type="text/css"/>
 
     <!-- Bootstrap Css -->
-    <link href="{{asset('backend/assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backend/assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet"
+          type="text/css"/>
     <!-- Icons Css -->
-    <link href="{{asset('backend/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backend/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
-    <link href="{{asset('backend/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backend/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -35,7 +36,8 @@
                         <div class="d-flex flex-column h-100">
                             <div class="mb-4 mb-md-5 text-center">
                                 <a href="index.html" class="d-block auth-logo">
-                                    <img src="{{asset('backend/assets/images/logo-sm.svg')}}" alt="" height="28"> <span class="logo-txt">Minia</span>
+                                    <img src="{{asset('backend/assets/images/logo-sm.svg')}}" alt="" height="28"> <span
+                                        class="logo-txt">Minia</span>
                                 </a>
                             </div>
                             <div class="auth-content my-auto">
@@ -61,20 +63,28 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label">Email</label>
-                                        <input type="text" class="form-control" name="email" id="email" placeholder="Enter email">
+                                        <input type="text" class="form-control" name="email" id="email"
+                                               placeholder="Enter email">
                                     </div>
                                     <div class="mb-3 mt-4">
-                                        <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Réinitialiser le mot de passe</button>
+                                        <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">
+                                            Réinitialiser le mot de passe
+                                        </button>
+                                    </div>
+
+
+                                    <div class="mt-5 text-center">
+                                        <p class="text-muted mb-0">Remember It ? <a href="auth-login.html"
+                                                                                    class="text-primary fw-semibold">
+                                                Sign In </a></p>
                                     </div>
                                 </form>
-
-                                <div class="mt-5 text-center">
-                                    <p class="text-muted mb-0">Remember It ?  <a href="auth-login.html"
-                                                                                 class="text-primary fw-semibold"> Sign In </a> </p>
-                                </div>
                             </div>
                             <div class="mt-4 mt-md-5 text-center">
-                                <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Minia   . Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                                <p class="mb-0">©
+                                    <script>document.write(new Date().getFullYear())</script>
+                                    Minia . Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -102,10 +112,15 @@
                         <div class="col-xl-7">
                             <div class="p-0 p-sm-4 px-xl-0">
                                 <div id="reviewcarouselIndicators" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-indicators carousel-indicators-rounded justify-content-start ms-0 mb-0">
-                                        <button type="button" data-bs-target="#reviewcarouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                        <button type="button" data-bs-target="#reviewcarouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                        <button type="button" data-bs-target="#reviewcarouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    <div
+                                        class="carousel-indicators carousel-indicators-rounded justify-content-start ms-0 mb-0">
+                                        <button type="button" data-bs-target="#reviewcarouselIndicators"
+                                                data-bs-slide-to="0" class="active" aria-current="true"
+                                                aria-label="Slide 1"></button>
+                                        <button type="button" data-bs-target="#reviewcarouselIndicators"
+                                                data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                        <button type="button" data-bs-target="#reviewcarouselIndicators"
+                                                data-bs-slide-to="2" aria-label="Slide 3"></button>
                                     </div>
                                     <!-- end carouselIndicators -->
                                     <div class="carousel-inner">
@@ -123,7 +138,9 @@
                                                 <div class="mt-4 pt-3 pb-5">
                                                     <div class="d-flex align-items-start">
                                                         <div class="flex-shrink-0">
-                                                            <img src="{{asset('backend/assets/images/users/avatar-1.jpg')}}" class="avatar-md img-fluid rounded-circle" alt="...">
+                                                            <img
+                                                                src="{{asset('backend/assets/images/users/avatar-1.jpg')}}"
+                                                                class="avatar-md img-fluid rounded-circle" alt="...">
                                                         </div>
                                                         <div class="flex-grow-1 ms-3 mb-4">
                                                             <h5 class="font-size-18 text-white">Richard Drews
@@ -148,7 +165,9 @@
                                                 <div class="mt-4 pt-3 pb-5">
                                                     <div class="d-flex align-items-start">
                                                         <div class="flex-shrink-0">
-                                                            <img src="{{asset('backend/assets/images/users/avatar-2.jpg')}}" class="avatar-md img-fluid rounded-circle" alt="...">
+                                                            <img
+                                                                src="{{asset('backend/assets/images/users/avatar-2.jpg')}}"
+                                                                class="avatar-md img-fluid rounded-circle" alt="...">
                                                         </div>
                                                         <div class="flex-grow-1 ms-3 mb-4">
                                                             <h5 class="font-size-18 text-white">Rosanna French

@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -93,4 +94,71 @@ class AdminController extends Controller
         return redirect()->route('admin.login')->with('success','Password reset successfully');
     }
     //end Method
+    public function adminProfileView()
+    {
+        $id = Auth::guard('admin')->id();
+        $profilData = Admin::find($id);
+        return view('admin.profile', compact('profilData'));
+    }
+    //end Method
+
+    public function adminProfileStore(Request $request)
+    {
+        // Validation des données
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:admins,email,' . Auth::guard('admin')->id(),
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:500',
+            'photo' => 'nullable|image|max:2048', // Limite à 2MB, doit être une image
+        ]);
+
+        try {
+            // Récupérer l'admin connecté
+            $admin = Auth::guard('admin')->user();
+            if (!$admin) {
+                return redirect()->back()->with('error', 'Utilisateur non authentifié.');
+            }
+
+            // Mettre à jour les champs
+            $admin->name = $request->name;
+            $admin->email = $request->email;
+            $admin->phone = $request->phone;
+            $admin->address = $request->address;
+
+            // Gestion de la photo
+            if ($request->hasFile('photo')) {
+                $oldPhotoPath = $admin->photo;
+
+                // Stocker la nouvelle photo avec Laravel Storage
+                $file = $request->file('photo');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $extension;
+                $file->move( public_path('upload/admin_img/'), $filename);
+                $admin->photo = $filename;
+
+                // Supprimer l'ancienne photo si elle existe
+                if ($oldPhotoPath && $oldPhotoPath !== $filename) {
+                    $this->deleteOldPhoto($oldPhotoPath);
+                }
+            }
+
+            // Sauvegarder les modifications
+            $admin->save();
+
+            return redirect()->back()->with('success', 'Profil mis à jour avec succès.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Une erreur est survenue : ' . $e->getMessage());
+        }
+    }
+    //end Method
+    private function deleteOldPhoto(string $oldPhotoPath): void
+    {
+        // Utiliser Storage pour supprimer l'ancienne photo
+        $fullPath = public_path('upload/admin_img/' . $oldPhotoPath);
+        if (file_exists($fullPath)){
+            unlink($fullPath);
+        }
+    }
+//end private Method*/
 }
