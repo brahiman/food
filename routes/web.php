@@ -24,6 +24,8 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('/admin/profile', [AdminController::class, 'adminProfileView'])->name('admin.profile.view');
     Route::post('/admin/profile/store', [AdminController::class, 'adminProfileStore'])->name('admin.profile.store');
+    Route::get('/admin/profile/changepwd/', [AdminController::class, 'adminChangePwdForm'])->name('admin.changepwd.view');
+    Route::post('/admin/profile/changepwd/submit', [AdminController::class, 'adminChangePwdSubmit'])->name('admin.changepwd.submit');
 });
 
 
