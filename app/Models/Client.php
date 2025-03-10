@@ -17,7 +17,7 @@ class Client extends Authenticatable
      *
      * @var list<string>
      */
-    protected $guard = 'admin';
+    protected $guard = 'client';
     protected $guarded = [];
 
     /**

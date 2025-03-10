@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Client Login </title>
+    <title>Client Register </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -19,9 +19,6 @@
     <link href="{{asset('backend/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="{{asset('backend/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
-
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-
 </head>
 
 <body>
@@ -57,8 +54,20 @@
                                     <li>{{ Session::get('success') }}</li>
                                 @endif
 
-                                <form class="mt-4 pt-2" action="{{route('client.loginSubmit')}}" method="post">
+                                <form class="mt-4 pt-2" action="{{route('client.register.submit')}}" method="post">
                                     @csrf
+                                    <div class="mb-3">
+                                        <label class="form-label">Nom du restaurant</label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Telephone</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">adresse</label>
+                                        <input type="text" class="form-control" id="address" name="address" placeholder="">
+                                    </div>
                                     <div class="mb-3">
                                         <label class="form-label">Email</label>
                                         <input type="email" class="form-control" id="email" name="email" placeholder="">
@@ -68,11 +77,7 @@
                                             <div class="flex-grow-1">
                                                 <label class="form-label">Password</label>
                                             </div>
-                                            <div class="flex-shrink-0">
-                                                <div class="">
-                                                    <a href="{{route('admin.forgetpassword')}} "class="text-muted">Mot de passe oublié?</a>
-                                                </div>
-                                            </div>
+
                                         </div>
 
                                         <div class="input-group auth-pass-inputgroup">
@@ -92,7 +97,7 @@
 
                                     </div>
                                     <div class="mb-3">
-                                        <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Se connecter</button>
+                                        <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">S'inscrire</button>
                                     </div>
                                 </form>
 
@@ -101,35 +106,35 @@
                                         <h5 class="font-size-14 mb-3 text-muted fw-medium">- Sign in with -</h5>
                                     </div>
 
-{{--                                    <ul class="list-inline mb-0">--}}
-{{--                                        <li class="list-inline-item">--}}
-{{--                                            <a href="javascript:void()"--}}
-{{--                                               class="social-list-item bg-primary text-white border-primary">--}}
-{{--                                                <i class="mdi mdi-facebook"></i>--}}
-{{--                                            </a>--}}
-{{--                                        </li>--}}
-{{--                                        <li class="list-inline-item">--}}
-{{--                                            <a href="javascript:void()"--}}
-{{--                                               class="social-list-item bg-info text-white border-info">--}}
-{{--                                                <i class="mdi mdi-twitter"></i>--}}
-{{--                                            </a>--}}
-{{--                                        </li>--}}
-{{--                                        <li class="list-inline-item">--}}
-{{--                                            <a href="javascript:void()"--}}
-{{--                                               class="social-list-item bg-danger text-white border-danger">--}}
-{{--                                                <i class="mdi mdi-google"></i>--}}
-{{--                                            </a>--}}
-{{--                                        </li>--}}
-{{--                                    </ul>--}}
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void()"
+                                               class="social-list-item bg-primary text-white border-primary">
+                                                <i class="mdi mdi-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void()"
+                                               class="social-list-item bg-info text-white border-info">
+                                                <i class="mdi mdi-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void()"
+                                               class="social-list-item bg-danger text-white border-danger">
+                                                <i class="mdi mdi-google"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
 
                                 <div class="mt-5 text-center">
-                                    <p class="text-muted mb-0">Vous n'avez pas de compte ? <a href="{{route('client.register')}}"
-                                                                                          class="text-primary fw-semibold"> Inscription maintenant </a> </p>
+                                    <p class="text-muted mb-0">Vous avez un compte ?<a href="{{route('client.login')}}"
+                                                                                          class="text-primary fw-semibold"> Connectez-vous </a> </p>
                                 </div>
                             </div>
                             <div class="mt-4 mt-md-5 text-center">
-                                <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Minia   . Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                                <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Minia   . Crafted with <i class="mdi mdi-heart text-danger"></i> by LGD</p>
                             </div>
                         </div>
                     </div>
@@ -266,38 +271,6 @@
 <script src="{{asset('backend/assets/libs/pace-js/pace.min.js')}}"></script>
 <!-- password addon init -->
 <script src="{{asset('backend/assets/js/pages/pass-addon.init.js')}}"></script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script>
-    toastr.options = {
-        "closeButton": true,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "timeOut": "10000"
-    };
-</script>
-<script>
-    @if(Session::has('message'))
-    var type = "{{ Session::get('alert-type', 'info') }}";
-    var message = "{!! Session::get('message') !!}"; // Échappement sécurisé pour JS
-
-    switch(type) {
-        case 'info':
-            toastr.info(message);
-            break;
-        case 'success':
-            toastr.success(message);
-            break;
-        case 'warning':
-            toastr.warning(message);
-            break;
-        case 'error':
-            toastr.error(message);
-            break;
-    }
-    @endif
-</script>
-
 
 </body>
 

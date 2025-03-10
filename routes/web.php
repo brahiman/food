@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,6 @@ Route::middleware(['admin'])->group(function () {
     Route::post('/admin/profile/changepwd/submit', [AdminController::class, 'adminChangePwdSubmit'])->name('admin.changepwd.submit');
 });
 
-
 Route::get('/admin/login', [AdminController::class, 'showAdminLoginForm'])->name('admin.login');
 Route::post('/admin/login/submit', [AdminController::class, 'adminLoginSubmit'])->name('admin.loginSubmit');
 Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
@@ -37,3 +37,19 @@ Route::get('/admin/forget/password/', [AdminController::class, 'showAdminForgetP
 Route::post('/admin/forgetpwd/submit', [AdminController::class, 'adminForgetPasswordSubmit'])->name('admin.forgetpwdsubmit');
 Route::get('/admin/reset-password/{token}/{email}', [AdminController::class, 'showAdminResetPasswordForm']);
 Route::post('/admin/resetpwd/submit', [AdminController::class, 'adminResetPasswordSubmit'])->name('admin.resetpwdsubmit');
+
+
+//ALL ROUTE FOR CLIENT
+Route::middleware(['client'])->group(function () {
+    Route::get('/client/dashboard', [ClientController::class, 'clientDashboard'])->name('client.dashboard');
+    Route::get('/client/profile', [ClientController::class, 'clientProfileView'])->name('client.profile.view');
+    Route::post('/client/profile/update', [ClientController::class, 'clientProfileUpdate'])->name('client.profile.update');
+    Route::get('/client/profile/changepwd/', [ClientController::class, 'clientChangePasswordForm'])->name('client.changepwd.view');
+    Route::post('/client/profile/changepwd/submit', [ClientController::class, 'clientChangePasswordSubmit'])->name('client.changepwd.submit');
+});
+Route::get('/client/login', [ClientController::class, 'showClientLoginForm'])->name('client.login');
+Route::get('/client/register', [ClientController::class, 'showClientRegisterForm'])->name('client.register');
+Route::post('/client/register/submit', [ClientController::class, 'clientRegisterSubmit'])->name('client.register.submit');
+
+Route::post('/client/login/submit', [ClientController::class, 'clientLoginSubmit'])->name('client.loginSubmit');
+Route::get('/client/logout', [ClientController::class, 'clientLogout'])->name('client.logout');
